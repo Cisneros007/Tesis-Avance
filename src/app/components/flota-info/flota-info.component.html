@@ -1,0 +1,37 @@
+<app-header></app-header>
+
+<div class="page-container">
+  <app-sidebar></app-sidebar> <!-- Sidebar agregado -->
+
+  <div class="fleet-info-container">
+    <h2>Información de la Flota</h2>
+
+    <!-- Iterar sobre los vehículos en fleetInfo -->
+    <div *ngFor="let vehiculo of fleetInfo" class="vehiculo-card">
+      <div class="vehiculo-content">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSih-22dgcm-zUsDQozMP8sBz7ws8MOE23HWQ&s" 
+             alt="Imagen del {{ vehiculo.nombre }}" 
+             class="vehiculo-image">
+        <div class="vehiculo-info">
+          <h3>{{ vehiculo.nombre }}</h3>
+          <p>Capacidad de carga: {{ vehiculo.capacidadCarga }} kg</p>
+          <ul>
+            <li *ngFor="let feature of vehiculo.caracteristicas">{{ feature }}</li>
+          </ul>
+          <button (click)="verDetalles(vehiculo)">Ver Detalles</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mostrar detalles del vehículo seleccionado -->
+    <div *ngIf="vehiculoSeleccionado" class="vehiculo-detalles">
+      <h3>Detalles de {{ vehiculoSeleccionado.nombre }}</h3>
+      <p><strong>Capacidad de carga:</strong> {{ vehiculoSeleccionado.capacidadCarga }} kg</p>
+      <p><strong>Características:</strong></p>
+      <ul>
+        <li *ngFor="let feature of vehiculoSeleccionado.caracteristicas">{{ feature }}</li>
+      </ul>
+      <button (click)="cerrarDetalles()">Cerrar</button>
+    </div>
+  </div>
+</div>

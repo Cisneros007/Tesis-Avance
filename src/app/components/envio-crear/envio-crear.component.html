@@ -1,0 +1,42 @@
+<app-header></app-header>
+
+<div class="page-container">
+  <app-sidebar></app-sidebar> <!-- Sidebar agregado -->
+
+  <div class="envio-crear-container">
+    <h2>Crear Nuevo Envío</h2>
+
+    <form (ngSubmit)="crearEnvio()">
+      <!-- Nombre del envío -->
+      <div class="form-group">
+        <label for="nombreEnvio">Nombre del Envío</label>
+        <input type="text" id="nombreEnvio" [(ngModel)]="nuevoEnvio.nombreEnvio" name="nombreEnvio" required />
+      </div>
+
+      <!-- Fecha del envío -->
+      <div class="form-group">
+        <label for="fechaEnvio">Fecha del Envío</label>
+        <input type="date" id="fechaEnvio" [(ngModel)]="nuevoEnvio.fechaEnvio" name="fechaEnvio" required />
+      </div>
+
+      <!-- Hora del envío -->
+      <div class="form-group">
+        <label for="horaEnvio">Hora del Envío</label>
+        <input type="time" id="horaEnvio" [(ngModel)]="nuevoEnvio.horaEnvio" name="horaEnvio" required />
+      </div>
+
+      <!-- Estado del envío -->
+      <div class="form-group">
+        <label for="estado">Estado del Envío</label>
+        <select id="estado" [(ngModel)]="nuevoEnvio.estado" name="estado" required>
+          <option value="Pendiente">Pendiente</option>
+          <option value="En Progreso">En Progreso</option>
+          <option value="Completado">Completado</option>
+        </select>
+      </div>
+
+      <!-- Botón para crear el envío -->
+      <button type="submit" class="btn-crear">Crear Envío</button>
+    </form>
+  </div>
+</div>

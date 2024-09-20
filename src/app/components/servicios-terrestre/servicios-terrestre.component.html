@@ -1,0 +1,28 @@
+<app-header></app-header>
+
+<div class="page-container">
+  <app-sidebar></app-sidebar> <!-- Sidebar agregado -->
+
+  <div class="servicios-terrestre-container">
+    <h2>Servicios Terrestres</h2>
+
+    <!-- Iterar sobre los servicios terrestres -->
+    <div class="servicio-card" *ngFor="let servicio of servicios">
+      <h3>{{ servicio.nombre }}</h3>
+      <p><strong>Descripción:</strong> {{ servicio.descripcion }}</p>
+      <p><strong>Tarifa:</strong> {{ servicio.tarifa | currency }}</p>
+      <button (click)="verDetalles(servicio)">Ver Detalles</button>
+    </div>
+
+    <!-- Mostrar detalles del servicio seleccionado -->
+    <div *ngIf="servicioSeleccionado" class="detalle-servicio">
+      <h3>Detalles de {{ servicioSeleccionado.nombre }}</h3>
+      <p><strong>Descripción:</strong> {{ servicioSeleccionado.descripcion }}</p>
+      <p><strong>Tarifa:</strong> {{ servicioSeleccionado.tarifa | currency }}</p>
+      <button (click)="cerrarDetalles()">Cerrar</button>
+    </div>
+
+    <!-- Botón para agregar un nuevo servicio -->
+    <button (click)="agregarServicio()" class="btn-agregar">Agregar Servicio</button>
+  </div>
+</div>

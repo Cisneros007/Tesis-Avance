@@ -1,0 +1,74 @@
+.page-container {
+  display: flex;
+}
+
+.fleet-info-container {
+  flex: 1;
+  padding: 20px;
+  margin-left: 100px; /* Espacio para el sidebar */
+}
+
+.vehiculo-card {
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+/* Estructura de la tarjeta usando Flexbox */
+.vehiculo-content {
+  display: flex;
+  align-items: center; /* Alinear verticalmente */
+  gap: 20px; /* Espacio entre imagen e información */
+}
+
+.vehiculo-image {
+  max-width: 200px; /* Tamaño máximo para la imagen */
+  height: auto;
+  border-radius: 8px;
+}
+
+.vehiculo-info {
+  flex: 1; /* Toma todo el espacio restante */
+}
+
+.vehiculo-info h3 {
+  margin: 0 0 10px;
+}
+
+.vehiculo-info ul {
+  list-style-type: disc;
+  padding-left: 20px;
+}
+
+.vehiculo-info button {
+  background-color: #003366;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  cursor: pointer;
+  border-radius: 4px;
+  margin-top: 10px;
+}
+
+.vehiculo-info button:hover {
+  background-color: #002a4c;
+}
+
+.vehiculo-detalles {
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-top: 30px;
+}
+
+.vehiculo-detalles h3 {
+  margin-top: 0;
+}
+
+.vehiculo-detalles ul {
+  list-style-type: square;
+  padding-left: 20px;
+}

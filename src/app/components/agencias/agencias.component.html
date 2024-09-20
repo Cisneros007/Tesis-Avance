@@ -1,0 +1,19 @@
+<app-header></app-header>
+
+<div class="page-container">
+  
+  <app-sidebar></app-sidebar> <!-- Sidebar agregado aquí -->
+
+  <div class="agencias-container">
+    <h1>Lista de Agencias</h1>
+
+    <div class="agencia-card" *ngFor="let agencia of agencias">
+      <h2>{{ agencia.name }}</h2>
+      <p>{{ agencia.address }}</p>
+      <p>Teléfono: {{ agencia.phone }}</p>
+      <p>Email: {{ agencia.email }}</p>
+      <button (click)="viewDetails(agencia)">Ver Detalles</button>
+    </div>
+  </div>
+
+</div>

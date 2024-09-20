@@ -1,0 +1,40 @@
+.page-container {
+  display: flex;
+}
+
+.agencias-container {
+  padding: 20px;
+  margin-left: 100px; /* Ajusta según el tamaño del sidebar */
+  flex-grow: 1;
+}
+
+.agencia-card {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 15px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.agencia-card h2 {
+  margin: 0;
+  font-size: 1.5em;
+}
+
+.agencia-card p {
+  color: #555;
+}
+
+.agencia-card button {
+  background-color: #003366;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.agencia-card button:hover {
+  background-color: #002a4c;
+}

@@ -1,0 +1,36 @@
+  <app-header></app-header>
+  
+  <div class="page-layout">
+    <app-sidebar></app-sidebar> <!-- Sidebar agregado aquí -->
+
+    <div class="rastrea-container">
+      <h1>Rastrear Envío</h1>
+      <form (ngSubmit)="onSubmit()" #trackingForm="ngForm">
+        <div class="form-group">
+          <label for="trackingNumber">Número de Seguimiento:</label>
+          <input 
+            type="text" 
+            id="trackingNumber" 
+            [(ngModel)]="trackingDetails.trackingNumber" 
+            name="trackingNumber" 
+            required
+            #trackingNumber="ngModel"
+            [ngClass]="{'is-invalid': trackingNumber.invalid && trackingNumber.touched}"
+          >
+          <div *ngIf="trackingNumber.invalid && trackingNumber.touched" class="invalid-feedback">
+            Número de seguimiento es requerido.
+          </div>
+        </div>
+
+        <button type="submit" [disabled]="!trackingForm.form.valid">Rastrear</button>
+      </form>
+
+      <div *ngIf="trackingInfo">
+        <h2>Detalles del Envío</h2>
+        <p><strong>Estado:</strong> {{ trackingInfo.status }}</p>
+        <p><strong>Fecha de Envío:</strong> {{ trackingInfo.shippedDate }}</p>
+        <p><strong>Fecha de Entrega Estimada:</strong> {{ trackingInfo.estimatedDelivery }}</p>
+        <p><strong>Ubicación Actual:</strong> {{ trackingInfo.currentLocation }}</p>
+      </div>
+    </div>
+  </div>
