@@ -1,48 +1,118 @@
+/* Contenedor general de la página */
 .page-container {
-    display: flex;
-  }
-  
+  display: flex;
+  flex-direction: row;
+  min-height: 100vh;
+  background-color: #f0f4f8;
+  font-family: 'Arial', sans-serif;
+}
+
+/* Contenedor principal para el formulario de creación de envío */
+.envio-crear-container {
+  margin: auto;
+  padding: 40px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  max-width: 600px;
+  width: 100%;
+}
+
+.envio-crear-container h2 {
+  text-align: center;
+  color: #333;
+  font-size: 24px;
+  margin-bottom: 30px;
+}
+
+/* Estilos para cada grupo del formulario */
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  font-weight: bold;
+  color: #555;
+  margin-bottom: 8px;
+}
+
+.form-group input,
+.form-group select {
+  width: 100%;
+  padding: 12px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+  transition: border-color 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+/* Estilo para el botón de crear envío */
+.btn-crear {
+  background-color: #007bff;
+  color: #fff;
+  font-size: 18px;
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  width: 100%;
+  transition: background-color 0.3s ease;
+}
+
+.btn-crear:hover {
+  background-color: #0056b3;
+}
+
+/* Diseño responsivo para dispositivos móviles */
+@media (max-width: 768px) {
   .envio-crear-container {
-    flex: 1;
     padding: 20px;
-    margin-left: 220px; /* Deja espacio para el sidebar */
+    margin: 20px;
   }
-  
-  h2 {
-    color: #333;
-    margin-bottom: 20px;
+}
+
+/* Sidebar styling */
+app-sidebar {
+  width: 250px;
+  background-color: #333;
+  color: white;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+app-sidebar a {
+  padding: 15px;
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  border-bottom: 1px solid #444;
+}
+
+app-sidebar a:hover {
+  background-color: #444;
+}
+
+/* Agrega un margen al contenido cuando está en pantalla más pequeña */
+@media (max-width: 768px) {
+  .page-container {
+    flex-direction: column;
   }
-  
-  .form-group {
-    margin-bottom: 15px;
-  }
-  
-  .form-group label {
-    display: block;
-    font-weight: bold;
-    margin-bottom: 5px;
-  }
-  
-  .form-group input,
-  .form-group select {
+
+  app-sidebar {
     width: 100%;
-    padding: 10px;
-    font-size: 16px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+    height: auto;
   }
-  
-  button.btn-crear {
-    background-color: #28a745;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    cursor: pointer;
-    border-radius: 4px;
-    font-size: 16px;
-  }
-  
-  button.btn-crear:hover {
-    background-color: #218838;
-  }
-  
+}
+#map {
+  height: 400px;
+  width: 100%;
+}

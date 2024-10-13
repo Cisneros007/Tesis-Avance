@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef, Renderer2 } from '@angular/core';
 
 @Component({
   selector: 'app-rutas-horarios',
@@ -6,7 +6,6 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./rutas-horarios.component.css']
 })
 export class RutasHorariosComponent implements OnInit {
-  // Datos de ejemplo para rutas y envíos
   rutas = [
     { nombreRuta: 'Ruta A', horaSalida: '08:00 AM', horaLlegada: '10:00 AM', duracion: '2h' },
     { nombreRuta: 'Ruta B', horaSalida: '11:00 AM', horaLlegada: '01:00 PM', duracion: '2h' },
@@ -19,14 +18,13 @@ export class RutasHorariosComponent implements OnInit {
     { nombreEnvio: 'Envío 3', fechaEnvio: '2024-09-22', horaEnvio: '02:15 PM', estado: 'En espera' }
   ];
 
-  // Datos del detalle
   rutaSeleccionada: any;
   envioSeleccionado: any;
 
-  constructor() { }
+  constructor(private elRef: ElementRef, private renderer: Renderer2) { }
 
   ngOnInit(): void {
-    // Inicialización si es necesaria
+    this.setupToggleButtons();
   }
 
   verDetallesRuta(ruta: any): void {
@@ -38,12 +36,46 @@ export class RutasHorariosComponent implements OnInit {
   }
 
   agregarRuta(): void {
-    // Lógica para agregar una nueva ruta
     console.log('Agregar Ruta');
   }
 
   agregarEnvio(): void {
-    // Lógica para agregar un nuevo envío
     console.log('Agregar Envío');
+  }
+
+  private setupToggleButtons(): void {
+    const sidebar = this.elRef.nativeElement.querySelector('.sidebar');
+    const toggleButtons = sidebar.querySelectorAll('.toggle-submenu');
+
+    const closeAllSubmenus = () => {
+      sidebar.querySelectorAll('.submenu').forEach((submenu: HTMLElement) => {
+        this.renderer.setStyle(submenu, 'display', 'none');
+      });
+      toggleButtons.forEach((button: HTMLElement) => {
+        this.renderer.removeClass(button, 'active');
+      });
+    };
+
+    toggleButtons.forEach((button: HTMLElement) => {
+      this.renderer.listen(button, 'click', (e: Event) => {
+        e.preventDefault();
+        const submenu = button.nextElementSibling as HTMLElement;
+
+        if (submenu.style.display === 'block') {
+          this.renderer.setStyle(submenu, 'display', 'none');
+          this.renderer.removeClass(button, 'active');
+        } else {
+          closeAllSubmenus();
+          this.renderer.setStyle(submenu, 'display', 'block');
+          this.renderer.addClass(button, 'active');
+        }
+      });
+    });
+
+    this.renderer.listen('document', 'click', (e: Event) => {
+      if (!sidebar.contains(e.target as Node)) {
+        closeAllSubmenus();
+      }
+    });
   }
 }

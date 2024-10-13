@@ -37,11 +37,11 @@ export class DashboardComponent implements AfterViewInit {
         const submenu = button.nextElementSibling as HTMLElement;
 
         if (submenu.style.display === 'block') {
-
+          // Si el menú está abierto, ciérralo
           this.renderer.setStyle(submenu, 'display', 'none');
           this.renderer.removeClass(button, 'active');
         } else {
-   
+          // Si el menú está cerrado, cierra todos los demás y abre este
           closeAllSubmenus();
           this.renderer.setStyle(submenu, 'display', 'block');
           this.renderer.addClass(button, 'active');
@@ -49,7 +49,7 @@ export class DashboardComponent implements AfterViewInit {
       });
     });
 
-
+    // Cierra todos los submenús si se hace clic fuera de ellos
     this.renderer.listen('document', 'click', (e: Event) => {
       if (!sidebar.contains(e.target as Node)) {
         closeAllSubmenus();

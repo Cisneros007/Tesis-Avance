@@ -1,13 +1,31 @@
-.pagalo-container {
-  padding: 20px;
-  max-width: 90%;
-  margin: 0 auto;
+.page-layout {
+  display: flex;
+  height: 100vh;
+  background: url('https://img.freepik.com/foto-gratis/retrato-mujer-rodeada-dinero_23-2151683237.jpg?size=626&ext=jpg&ga=GA1.1.2008272138.1727049600&semt=ais_hybrid') no-repeat center center;
+  background-size: 100%; /* Asegura que la imagen cubra toda la pantalla */
+  width: 100%;
 }
 
-.pagalo-container h1 {
-  font-size: 34px;
-  color: #003366;
+.pagalo-container {
+  margin: auto;
+  background-color: rgba(255, 0, 0, 0.9); /* Red overlay */
+  padding: 30px;
+  border-radius: 10px;
+  width: 90%;
+  max-width: 600px;
+  color: dark;
+  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.3);
+}
+
+h1 {
+  text-align: center;
+  font-size: 2rem;
   margin-bottom: 20px;
+}
+
+p {
+  text-align: center;
+  margin-bottom: 30px;
 }
 
 .form-group {
@@ -15,53 +33,36 @@
 }
 
 .form-group label {
-  display: block;
-  margin-bottom: 5px;
-  font-size: 16px;
+  font-weight: bold;
 }
 
-.form-group input,
-.form-group select {
+input, select {
   width: 100%;
   padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-}
-
-button {
-  background-color: #003366;
-  color: #fff;
-  border: none;
-  padding: 10px 20px;
+  margin-top: 5px;
   border-radius: 5px;
-  font-size: 16px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-button:hover {
-  background-color: #002a4c;
-}
-.form-group {
-  margin-bottom: 15px;
-}
-
-.invalid-feedback {
-  color: red;
-  font-size: 0.875em;
+  border: 1px solid #ddd;
 }
 
 .is-invalid {
   border-color: red;
 }
-.page-layout {
-  display: flex;
+
+.invalid-feedback {
+  color: yellow;
 }
-/* General Styles */
-body {
-  font-family: Arial, sans-serif;
-  margin: 0;
-  padding: 0;
-  background-color: #f9f9f9;
-  color: #333;
+
+button.submit-btn {
+  background-color: white;
+  color: red;
+  border: none;
+  padding: 10px 20px;
+  width: 100%;
+  font-size: 1.2rem;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+button.submit-btn:disabled {
+  background-color: #ccc;
 }

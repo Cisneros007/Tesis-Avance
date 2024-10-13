@@ -7,7 +7,9 @@ import { Component, ElementRef, Renderer2, AfterViewInit } from '@angular/core';
 })
 export class RastrearComponent implements AfterViewInit {
   trackingDetails = {
-    trackingNumber: ''
+    trackingNumber: '',
+    orderCode: '',   // Campo para el código de pedido
+    password: ''     // Campo para la clave
   };
 
   trackingInfo: any;
@@ -19,7 +21,7 @@ export class RastrearComponent implements AfterViewInit {
   }
 
   onSubmit() {
-    console.log('Buscando información para el número de seguimiento:', this.trackingDetails.trackingNumber);
+    console.log('Buscando información con los siguientes datos:', this.trackingDetails);
 
     // Simulación de datos de rastreo
     this.trackingInfo = {

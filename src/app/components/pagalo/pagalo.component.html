@@ -1,103 +1,49 @@
 <app-header></app-header>
 
 <div class="page-layout">
-  <app-sidebar></app-sidebar> <!-- Sidebar agregado aquí -->
+  <app-sidebar></app-sidebar>
 
   <div class="pagalo-container">
-    <h1>Paga tu Envío</h1>
+    <h1>Bienvenido a Págalo</h1>
+    <p>Puedes pagar con cualquier método de pago</p>
 
     <form (ngSubmit)="onSubmit()" #paymentForm="ngForm">
-      <!-- Monto -->
+      <!-- Código del Pedido -->
       <div class="form-group">
-        <label for="amount">Monto:</label>
         <input
           type="text"
-          id="amount"
-          [(ngModel)]="paymentDetails.amount"
-          name="amount"
+          id="orderCode"
+          [(ngModel)]="paymentDetails.orderCode"
+          name="orderCode"
+          placeholder="Código de orden"
           required
-          #amount="ngModel"
-          [ngClass]="{ 'is-invalid': amount.invalid && amount.touched }"
+          #orderCode="ngModel"
+          [ngClass]="{ 'is-invalid': orderCode.invalid && orderCode.touched }"
         >
-        <div *ngIf="amount.invalid && amount.touched" class="invalid-feedback">
-          El monto es requerido.
+        <div *ngIf="orderCode.invalid && orderCode.touched" class="invalid-feedback">
+          El código del pedido es requerido.
         </div>
       </div>
 
-      <!-- Método de Pago -->
+      <!-- Clave -->
       <div class="form-group">
-        <label for="method">Método de Pago:</label>
-        <select
-          id="method"
-          [(ngModel)]="paymentDetails.method"
-          name="method"
+        <input
+          type="password"
+          id="password"
+          [(ngModel)]="paymentDetails.password"
+          name="password"
+          placeholder="Clave"
           required
-          #method="ngModel"
-          [ngClass]="{ 'is-invalid': method.invalid && method.touched }"
+          #password="ngModel"
+          [ngClass]="{ 'is-invalid': password.invalid && password.touched }"
         >
-          <option value="">Seleccione un método</option>
-          <option value="credit-card">Tarjeta de Crédito</option>
-          <option value="paypal">PayPal</option>
-          <option value="bank-transfer">Transferencia Bancaria</option>
-        </select>
-        <div *ngIf="method.invalid && method.touched" class="invalid-feedback">
-          El método de pago es requerido.
-        </div>
-      </div>
-
-      <!-- Información de Tarjeta (Sólo si se selecciona Tarjeta de Crédito) -->
-      <div *ngIf="paymentDetails.method === 'credit-card'">
-        <div class="form-group">
-          <label for="cardNumber">Número de Tarjeta:</label>
-          <input
-            type="text"
-            id="cardNumber"
-            [(ngModel)]="paymentDetails.cardNumber"
-            name="cardNumber"
-            required
-            #cardNumber="ngModel"
-            [ngClass]="{ 'is-invalid': cardNumber.invalid && cardNumber.touched }"
-          >
-          <div *ngIf="cardNumber.invalid && cardNumber.touched" class="invalid-feedback">
-            El número de tarjeta es requerido.
-          </div>
-        </div>
-
-        <div class="form-group">
-          <label for="cardExpiry">Fecha de Expiración:</label>
-          <input
-            type="text"
-            id="cardExpiry"
-            [(ngModel)]="paymentDetails.cardExpiry"
-            name="cardExpiry"
-            required
-            #cardExpiry="ngModel"
-            [ngClass]="{ 'is-invalid': cardExpiry.invalid && cardExpiry.touched }"
-          >
-          <div *ngIf="cardExpiry.invalid && cardExpiry.touched" class="invalid-feedback">
-            La fecha de expiración es requerida.
-          </div>
-        </div>
-
-        <div class="form-group">
-          <label for="cardCvv">CVV:</label>
-          <input
-            type="text"
-            id="cardCvv"
-            [(ngModel)]="paymentDetails.cardCvv"
-            name="cardCvv"
-            required
-            #cardCvv="ngModel"
-            [ngClass]="{ 'is-invalid': cardCvv.invalid && cardCvv.touched }"
-          >
-          <div *ngIf="cardCvv.invalid && cardCvv.touched" class="invalid-feedback">
-            El CVV es requerido.
-          </div>
+        <div *ngIf="password.invalid && password.touched" class="invalid-feedback">
+          La clave es requerida.
         </div>
       </div>
 
       <!-- Botón de Pago -->
-      <button type="submit" [disabled]="!paymentForm.form.valid">Pagar</button>
+      <button type="submit" [disabled]="!paymentForm.form.valid" class="submit-btn">Pagar Ahora</button>
     </form>
   </div>
 </div>

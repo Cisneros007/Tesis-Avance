@@ -1,36 +1,61 @@
-  <app-header></app-header>
-  
-  <div class="page-layout">
-    <app-sidebar></app-sidebar> <!-- Sidebar agregado aquí -->
+<app-header></app-header>
 
-    <div class="rastrea-container">
-      <h1>Rastrear Envío</h1>
-      <form (ngSubmit)="onSubmit()" #trackingForm="ngForm">
-        <div class="form-group">
-          <label for="trackingNumber">Número de Seguimiento:</label>
-          <input 
-            type="text" 
-            id="trackingNumber" 
-            [(ngModel)]="trackingDetails.trackingNumber" 
-            name="trackingNumber" 
-            required
-            #trackingNumber="ngModel"
-            [ngClass]="{'is-invalid': trackingNumber.invalid && trackingNumber.touched}"
-          >
-          <div *ngIf="trackingNumber.invalid && trackingNumber.touched" class="invalid-feedback">
-            Número de seguimiento es requerido.
-          </div>
+<div class="page-layout">
+  <app-sidebar></app-sidebar> <!-- Sidebar aquí -->
+
+  <div class="rastrea-container">
+    <h1>Rastrear tu Envío</h1>
+    <form (ngSubmit)="onSubmit()" #trackingForm="ngForm">
+      <!-- Campo para el número de seguimiento -->
+      <img src="https://rastrea.shalom.pe/img/rastrea/ticket_mobile.png" alt="Imagen de rastreo de envío" class="tracking-image">
+
+
+
+      <!-- Campo para el código de pedido -->
+      <div class="form-group">
+        <label for="orderCode">Código de Pedido</label>
+        <input 
+          type="text" 
+          id="orderCode" 
+          [(ngModel)]="trackingDetails.orderCode" 
+          name="orderCode" 
+          required
+          #orderCode="ngModel"
+          [ngClass]="{'is-invalid': orderCode.invalid && orderCode.touched}"
+          placeholder="Introduce el código de tu pedido"
+        >
+        <div *ngIf="orderCode.invalid && orderCode.touched" class="invalid-feedback">
+          Código de pedido requerido.
         </div>
-
-        <button type="submit" [disabled]="!trackingForm.form.valid">Rastrear</button>
-      </form>
-
-      <div *ngIf="trackingInfo">
-        <h2>Detalles del Envío</h2>
-        <p><strong>Estado:</strong> {{ trackingInfo.status }}</p>
-        <p><strong>Fecha de Envío:</strong> {{ trackingInfo.shippedDate }}</p>
-        <p><strong>Fecha de Entrega Estimada:</strong> {{ trackingInfo.estimatedDelivery }}</p>
-        <p><strong>Ubicación Actual:</strong> {{ trackingInfo.currentLocation }}</p>
       </div>
+
+      <!-- Campo para la clave -->
+      <div class="form-group">
+        <label for="password">Clave</label>
+        <input 
+          type="password" 
+          id="password" 
+          [(ngModel)]="trackingDetails.password" 
+          name="password" 
+          required
+          #password="ngModel"
+          [ngClass]="{'is-invalid': password.invalid && password.touched}"
+          placeholder="Introduce tu clave"
+        >
+        <div *ngIf="password.invalid && password.touched" class="invalid-feedback">
+          La clave es requerida.
+        </div>
+      </div>
+
+      <button type="submit" [disabled]="!trackingForm.form.valid">Rastrear Envío</button>
+    </form>
+
+    <div *ngIf="trackingInfo" class="tracking-info">
+      <h2>Detalles del Envío</h2>
+      <p><strong>Estado:</strong> {{ trackingInfo.status }}</p>
+      <p><strong>Fecha de Envío:</strong> {{ trackingInfo.shippedDate }}</p>
+      <p><strong>Fecha de Entrega Estimada:</strong> {{ trackingInfo.estimatedDelivery }}</p>
+      <p><strong>Ubicación Actual:</strong> {{ trackingInfo.currentLocation }}</p>
     </div>
   </div>
+</div>

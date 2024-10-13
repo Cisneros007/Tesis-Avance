@@ -15,6 +15,8 @@ import { RutasHorariosComponent } from './components/rutas-horarios/rutas-horari
 import { ServiciosTerrestreComponent } from './components/servicios-terrestre/servicios-terrestre.component';
 import { ServiciosAereoComponent } from './components/servicios-aereo/servicios-aereo.component';
 import { EnvioHistorialComponent } from './components/envio-historial/envio-historial.component';
+import { ComunicateComponent } from './components/comunicate/comunicate.component';
+import { CompanyInfoComponent } from './components/company-info/company-info.component';
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
@@ -32,7 +34,10 @@ const routes: Routes = [
   { path: 'agencias', component: AgenciasComponent, canActivate: [AuthGuard] },
   { path: 'agencia-detalle/:id', component: AgenciaDetalleComponent, canActivate: [AuthGuard] },
   { path: 'tarifas', component: TarifasComponent, canActivate: [AuthGuard] },
-  { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] }
+  { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
+  { path: 'comunicate', component: ComunicateComponent, canActivate: [AuthGuard] },
+  { path: 'company-info', component: CompanyInfoComponent, canActivate: [AuthGuard] }
+
 
 ];
 

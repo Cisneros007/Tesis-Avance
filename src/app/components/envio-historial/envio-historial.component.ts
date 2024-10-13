@@ -1,11 +1,12 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, Renderer2, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-envio-historial',
   templateUrl: './envio-historial.component.html',
   styleUrls: ['./envio-historial.component.css']
 })
-export class EnvioHistorialComponent {
+export class EnvioHistorialComponent implements OnInit {
   historialEnvios = [
     {
       nombreEnvio: 'Envío #1',
@@ -32,6 +33,12 @@ export class EnvioHistorialComponent {
 
   envioSeleccionado: any = null;
 
+  constructor(private elRef: ElementRef, private renderer: Renderer2, private router: Router) {}
+
+  ngOnInit(): void {
+    this.setupToggleButtons();
+  }
+
   // Ver detalles del envío
   verDetallesEnvio(envio: any) {
     this.envioSeleccionado = envio;
@@ -40,5 +47,42 @@ export class EnvioHistorialComponent {
   // Cerrar detalles del envío
   cerrarDetalles() {
     this.envioSeleccionado = null;
+  }
+
+  // Función para configurar los botones de alternancia en el menú
+  private setupToggleButtons(): void {
+    const sidebar = this.elRef.nativeElement.querySelector('.sidebar');
+    const toggleButtons = sidebar.querySelectorAll('.toggle-submenu');
+
+    const closeAllSubmenus = () => {
+      sidebar.querySelectorAll('.submenu').forEach((submenu: HTMLElement) => {
+        this.renderer.setStyle(submenu, 'display', 'none');
+      });
+      toggleButtons.forEach((button: HTMLElement) => {
+        this.renderer.removeClass(button, 'active');
+      });
+    };
+
+    toggleButtons.forEach((button: HTMLElement) => {
+      this.renderer.listen(button, 'click', (e: Event) => {
+        e.preventDefault();
+        const submenu = button.nextElementSibling as HTMLElement;
+
+        if (submenu.style.display === 'block') {
+          this.renderer.setStyle(submenu, 'display', 'none');
+          this.renderer.removeClass(button, 'active');
+        } else {
+          closeAllSubmenus();
+          this.renderer.setStyle(submenu, 'display', 'block');
+          this.renderer.addClass(button, 'active');
+        }
+      });
+    });
+
+    this.renderer.listen('document', 'click', (e: Event) => {
+      if (!sidebar.contains(e.target as Node)) {
+        closeAllSubmenus();
+      }
+    });
   }
 }

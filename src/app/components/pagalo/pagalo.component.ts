@@ -7,7 +7,8 @@ import { Component, ElementRef, Renderer2, AfterViewInit } from '@angular/core';
 })
 export class PagaloComponent implements AfterViewInit {
   paymentDetails = {
-    amount: '',
+    orderCode: '',
+    password: '',
     method: '',
     cardNumber: '',
     cardExpiry: '',
@@ -21,6 +22,8 @@ export class PagaloComponent implements AfterViewInit {
   }
 
   onSubmit() {
+    console.log('Procesando pago con detalles:', this.paymentDetails);
+
     if (this.paymentDetails.method === 'credit-card') {
       console.log('Procesando pago con tarjeta de crédito:', this.paymentDetails);
     } else if (this.paymentDetails.method === 'paypal') {

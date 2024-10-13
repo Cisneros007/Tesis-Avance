@@ -1,40 +1,24 @@
 import { Component, ElementRef, Renderer2, AfterViewInit } from '@angular/core';
-import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-tarifas',
-  templateUrl: './tarifas.component.html',
-  styleUrls: ['./tarifas.component.css']
+  selector: 'app-comunicate',
+  templateUrl: './comunicate.component.html',
+  styleUrls: ['./comunicate.component.css']
 })
-export class TarifasComponent implements AfterViewInit {
-  tarifas = [];
-  origen: string = '';
-  destino: string = '';
-  buscarRealizado: boolean = false;
+export class ComunicateComponent implements AfterViewInit {
+  isMenuVisible: boolean = false;
 
-  constructor(private elRef: ElementRef, private renderer: Renderer2, private router: Router) {
-    // Inicializa algunas tarifas de ejemplo solo para Perú
-   
-  }
+  constructor(private elRef: ElementRef, private renderer: Renderer2) {}
 
   ngAfterViewInit(): void {
     this.setupToggleButtons();
   }
 
-  buscarTarifas(): void {
-    // Aquí puedes implementar la lógica para buscar tarifas reales según el origen y destino
-    // Por simplicidad, simplemente configuramos el estado de la búsqueda
-    this.buscarRealizado = true;
-
-    // Aquí puedes filtrar las tarifas según el origen y destino
-    // Por ahora, simplemente se mostrará la tabla con los datos de ejemplo
+  toggleMenu(): void {
+    this.isMenuVisible = !this.isMenuVisible;
   }
 
-  viewDetails(tarifa: any): void {
-    // Redirige a la página de detalles de la tarifa
-    this.router.navigate(['/tarifa-detalle', tarifa.id]);
-  }
-
+  // Método para configurar la funcionalidad de los botones de alternancia del menú lateral
   private setupToggleButtons(): void {
     const sidebar = this.elRef.nativeElement.querySelector('.sidebar');
     const toggleButtons = sidebar.querySelectorAll('.toggle-submenu');

@@ -24,7 +24,8 @@ import { ServiciosTerrestreComponent } from './components/servicios-terrestre/se
 import { ServiciosAereoComponent } from './components/servicios-aereo/servicios-aereo.component';
 import { EnvioCrearComponent } from './components/envio-crear/envio-crear.component';
 import { EnvioHistorialComponent } from './components/envio-historial/envio-historial.component';
-
+import { ComunicateComponent } from './components/comunicate/comunicate.component';
+import { CompanyInfoComponent } from './components/company-info/company-info.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -47,6 +48,8 @@ import { EnvioHistorialComponent } from './components/envio-historial/envio-hist
     ServiciosAereoComponent,
     EnvioCrearComponent,
     EnvioHistorialComponent,
+    ComunicateComponent,
+    CompanyInfoComponent,
   ],
   imports: [
     BrowserModule,
