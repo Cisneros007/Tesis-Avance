@@ -17,6 +17,7 @@ import { PagaloComponent } from './components/pagalo/pagalo.component';
 import { AgenciasComponent } from './components/agencias/agencias.component';
 import { TarifasComponent } from './components/tarifas/tarifas.component';
 import { AgenciaDetalleComponent } from './components/agencia-detalle/agencia-detalle.component';
+import { ReactiveFormsModule } from '@angular/forms'; // Import ReactiveFormsModule
 
 import { FlotaInfoComponent } from './components/flota-info/flota-info.component';
 import { RutasHorariosComponent } from './components/rutas-horarios/rutas-horarios.component';
@@ -55,6 +56,8 @@ import { CompanyInfoComponent } from './components/company-info/company-info.com
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    ReactiveFormsModule, // Add it here
+
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideAuth(() => getAuth()),
 

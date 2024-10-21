@@ -1,28 +1,17 @@
-<div class="cabeza">
-  <div class="page-container">
-    <header>
-      <nav class="navbar">
-        <a routerLink="/dashboard" class="logo-container">
-          <img src="https://media.istockphoto.com/id/1322673846/es/vector/pegatina-de-env%C3%ADo-gratis-entrega-gratuita-insignia-con-cami%C3%B3n-vector-en-fondo-aislado-eps-10.jpg?s=612x612&w=0&k=20&c=xPzW7KxoC9Dfol2aOc3UCOtOms7mCvqWMYruzN8pL-w=" alt="Logo Empresa" class="logo">
-        </a>
-        <div class="hamburger" id="hamburger">
-          <i class="fas fa-bars"></i>
-        </div>
+<header id="header">
+  <nav class="navbar">
+      <a href="#" class="logo">EnvíosFácil</a>
+      <ul class="nav-links">
+        <li><a routerLink="/dashboard"><i class="fas fa-home"></i> Inicio</a></li>
+        <li><a routerLink="/pagalo"><i class="fas fa-dollar-sign"></i> Págalo</a></li>
+        <li><a routerLink="/rastrear"><i class="fas fa-dollar-sign"></i> rastrear</a></li>
+          <li><a href="#">Iniciar Sesión</a></li>
+      </ul>
+      <div class="user-options">
+        <a href="#" class="cart-icon"><i class="fas fa-shopping-cart"></i></a>
+        <a routerLink="/perfil" class="profile-icon"><i class="fas fa-user"></i></a>
+        <button class="logout-button" (click)="logOut()">Cerrar sesión</button>
+      </div>
 
-        <ul class="nav-menu" id="nav-menu">
-          <li><a routerLink="/dashboard"><i class="fas fa-home"></i> Inicio</a></li>
-          <li><a routerLink="/rastrear"><i class="fas fa-search"></i> Rastrea</a></li>
-          <li><a routerLink="/pagalo"><i class="fas fa-dollar-sign"></i> Págalo</a></li>
-          <li><a routerLink="/agencias"><i class="fas fa-building"></i> Agencias</a></li>
-          <li><a routerLink="/tarifas"><i class="fas fa-tags"></i> Tarifas</a></li>
-        </ul>
-
-        <div class="user-options">
-          <a href="#" class="cart-icon"><i class="fas fa-shopping-cart"></i></a>
-          <a routerLink="/perfil" class="profile-icon"><i class="fas fa-user"></i></a>
-          <button class="logout-button" (click)="logOut()">Cerrar sesión</button>
-        </div>
-      </nav>
-    </header>
-  </div>
-</div>
+  </nav>
+</header>

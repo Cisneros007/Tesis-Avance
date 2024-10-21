@@ -15,24 +15,37 @@ export class PagaloComponent implements AfterViewInit {
     cardCvv: ''
   };
 
+  paymentSuccess: boolean = false;
+  trackingNumber: string = '';
+
   constructor(private elRef: ElementRef, private renderer: Renderer2) {}
 
   ngAfterViewInit(): void {
     this.setupToggleButtons();
   }
 
+  selectPaymentMethod(method: string) {
+    this.paymentDetails.method = method;
+    console.log(`Método de pago seleccionado: ${method}`);
+  }
+
   onSubmit() {
     console.log('Procesando pago con detalles:', this.paymentDetails);
 
-    if (this.paymentDetails.method === 'credit-card') {
-      console.log('Procesando pago con tarjeta de crédito:', this.paymentDetails);
-    } else if (this.paymentDetails.method === 'paypal') {
-      console.log('Procesando pago con PayPal:', this.paymentDetails);
-    } else if (this.paymentDetails.method === 'bank-transfer') {
-      console.log('Procesando pago por transferencia bancaria:', this.paymentDetails);
+    // Simulación de procesamiento de pago
+    if (this.paymentDetails.method) {
+      this.trackingNumber = this.generateTrackingNumber();
+      // Mostrar mensaje de éxito y número de seguimiento
+      this.paymentSuccess = true;
+      alert('Pago realizado con éxito! Tu número de seguimiento es: ' + this.trackingNumber);
+    } else {
+      alert('Por favor, selecciona un método de pago.');
     }
+  }
 
-    alert('Pago realizado con éxito!');
+  private generateTrackingNumber(): string {
+    // Generar un número de seguimiento aleatorio como ejemplo
+    return 'TRK-' + Math.floor(Math.random() * 1000000).toString();
   }
 
   private setupToggleButtons(): void {

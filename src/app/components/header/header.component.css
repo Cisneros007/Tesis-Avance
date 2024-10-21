@@ -1,123 +1,53 @@
-/* General Page Container */
-.page-container {
-  display: flex;
-  flex-direction: column;
-  background-color: #f4f4f9;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-/* Navbar Styles */
-.navbar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  background-color: #3949ab;
-  padding: 15px 20px;
-  color: white;
-  position: relative;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-}
-
-.logo-container {
-  display: flex;
-  align-items: center;
-}
-
-.logo {
-  width: 60px;
-  height: auto;
-  border-radius: 50%;
-  transition: transform 0.3s ease-in-out;
-}
-
-.logo:hover {
-  transform: scale(1.1);
-}
-
-.hamburger {
-  display: none;
-  font-size: 24px;
-  color: white;
-  cursor: pointer;
-}
-
-/* Navigation Menu */
-.nav-menu {
-  display: flex;
-  gap: 25px;
-  list-style: none;
-}
-
-.nav-menu li {
-  transition: all 0.3s ease;
-}
-
-.nav-menu li a {
-  color: white;
-  text-decoration: none;
-  font-size: 16px;
-  display: flex;
-  align-items: center;
-  gap: 5px;
-}
-
-.nav-menu li a:hover {
-  color: #ffca28;
-}
-
-/* User Options */
-.user-options {
-  display: flex;
-  gap: 15px;
-  align-items: center;
-}
-
-.cart-icon, .profile-icon {
-  color: white;
-  font-size: 20px;
-  cursor: pointer;
-  transition: transform 0.3s ease;
-}
-
-.cart-icon:hover, .profile-icon:hover {
-  transform: scale(1.1);
-}
-
-.logout-button {
-  padding: 8px 15px;
-  background-color: #e53935;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
+header {
+  background-color: #1e3a8a;
+  padding: 20px;
+  position: fixed;
+  width: 100%;
+  z-index: 1000;
   transition: background-color 0.3s ease;
 }
 
-.logout-button:hover {
-  background-color: #c62828;
+header.scrolled {
+  background-color: rgba(30, 58, 138, 0.9);
 }
 
-/* Responsive Navbar */
-@media (max-width: 768px) {
-  .nav-menu {
-      display: none;
-      flex-direction: column;
-      position: absolute;
-      top: 100%;
-      left: 0;
-      width: 100%;
-      background-color: #3949ab;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  }
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+}
 
-  .nav-menu.active {
-      display: flex;
-  }
+.logo {
+  font-size: 24px;
+  font-weight: bold;
+  color: white;
+  text-decoration: none;
+}
 
-  .hamburger {
-      display: block;
-  }
+.nav-links {
+  list-style-type: none;
+  display: flex;
+}
 
-  .navbar {
-      justify-content: space-between;
-  }
+.nav-links li {
+  margin: 0 15px;
+}
+
+.nav-links a {
+  color: white;
+  text-decoration: none;
+  font-size: 16px;
+  transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+  color: #fbbf24;
 }

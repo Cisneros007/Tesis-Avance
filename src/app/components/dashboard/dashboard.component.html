@@ -1,58 +1,55 @@
-<div class="page-container">
-  <app-header></app-header>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EnvíosFácil - Conectando empresas de transporte en Perú</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+</head>
+<body>
 
-  <!-- Content Wrap -->
-  <div class="content-wrap">
-    <!-- Sidebar -->
-    <app-sidebar></app-sidebar>
+    <app-header></app-header>
 
-    <!-- Main Content -->
-    <main class="main-content">
-      <!-- Section with Hero Image -->
-      <section class="hero-section">
-        <h1>Envía con Confianza y Facilidad</h1>
-        <p>Explora nuestras soluciones de envío rápido y seguro, adaptadas a tus necesidades.</p>
-        <button class="cta-button">Comienza Ahora</button>
-      </section>
-
-      <!-- Card Section -->
-      <div class="card-grid enhanced-grid">
-        <div class="card">
-          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRytcs9EegdgXm4Vo5m5g2QG_88z5FIbtqe7w&s" alt="Servicio de calidad">
-          <h3>Servicio de Calidad</h3>
-          <p>Brindar un servicio de calidad es nuestra prioridad.</p>
+    <section class="hero">
+        <div class="hero-content">
+            <h2>Conectamos empresas de transporte y clientes en todo Perú</h2>
+            <p>Gestiona tus envíos de manera eficiente y segura</p>
+            <button routerLink="/envio-crear" class="cta-btn">Comienza ahora</button>
         </div>
-        <div class="card">
-          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRytcs9EegdgXm4Vo5m5g2QG_88z5FIbtqe7w&s" alt="Gestión de envíos">
-          <h3>Gestión Simple</h3>
-          <p>Registra, paga y rastrea tus envíos fácilmente.</p>
-        </div>
-        <div class="card">
-          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRytcs9EegdgXm4Vo5m5g2QG_88z5FIbtqe7w&s" alt="Envíos aéreos">
-          <h3>Envíos Aéreos</h3>
-          <p>¿Quieres registrar envíos aéreos? ¡Ahora es posible!</p>
-        </div>
-        <div class="card">
-          <img src="/src/assets/envio1.png" alt="Consulta de tiempos">
-          <h3>Tiempos de Entrega</h3>
-          <p>Consulta el tiempo de llegada de un envío en: tarifas.shalom.pe</p>
-        </div>
-      </div>
+    </section>
 
-    </main>
-  </div>
+    <section class="features">
+        <div class="feature">
+            <i class="fas fa-map-marker-alt"></i>
+            <h3>Seguimiento en tiempo real</h3>
+            <p>Mantente informado sobre la ubicación de tus envíos en todo momento.</p>
+        </div>
+        <div class="feature">
+            <i class="fas fa-route"></i>
+            <h3>Optimización de rutas</h3>
+            <p>Rutas inteligentes que ahorran tiempo y dinero.</p>
+        </div>
+        <div class="feature">
+            <i class="fas fa-boxes"></i>
+            <h3>Gestión eficiente de pedidos e inventario</h3>
+            <p>Controla y gestiona tus envíos y productos desde una sola plataforma.</p>
+        </div>
+    </section>
 
-  <!-- Footer -->
-  <footer>
-    <ul class="footer-menu">
-      <li><a href="#">Embalaje</a></li>
-      <li><a href="#">Destinos aéreos</a></li>
-      <li><a href="#">Protege tus envíos</a></li>
-      <li><a href="#">Términos y condiciones</a></li>
-      <li><a href="#">Libro de reclamaciones</a></li>
-    </ul>
-  </footer>
-</div>
+    <footer>
+        <p>&copy; 2024 EnvíosFácil. Todos los derechos reservados.</p>
+    </footer>
 
-<!-- Chat Button -->
-<button class="chat-button"><i class="fas fa-comments"></i> Chat Shalom</button>
+    <script>
+        window.addEventListener('scroll', function() {
+            var header = document.getElementById('header');
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,20 +1,40 @@
-import { Component, ElementRef, Renderer2, AfterViewInit } from '@angular/core';
+import { Component, ElementRef, Renderer2, AfterViewInit, OnInit } from '@angular/core';
+
+interface InformacionEnvio {
+  numeroRastreo: string;
+  fechaRegistro: string;
+  fechaEntrega: string;
+  origen: string;
+  destino: string;
+  estado: 'registrado' | 'en-ruta' | 'entregado';
+}
 
 @Component({
   selector: 'app-rastrear',
   templateUrl: './rastrear.component.html',
   styleUrls: ['./rastrear.component.css']
 })
-export class RastrearComponent implements AfterViewInit {
+export class RastrearComponent implements OnInit, AfterViewInit {
   trackingDetails = {
     trackingNumber: '',
-    orderCode: '',   // Campo para el código de pedido
-    password: ''     // Campo para la clave
+    orderCode: '',
+    password: ''
   };
 
   trackingInfo: any;
 
+  informacionEnvio: InformacionEnvio = {
+    numeroRastreo: '',
+    fechaRegistro: '',
+    fechaEntrega: '',
+    origen: '',
+    destino: '',
+    estado: 'registrado'
+  };
+
   constructor(private elRef: ElementRef, private renderer: Renderer2) {}
+
+  ngOnInit(): void {}
 
   ngAfterViewInit(): void {
     this.setupToggleButtons();
@@ -31,10 +51,17 @@ export class RastrearComponent implements AfterViewInit {
       currentLocation: 'Lima, Perú'
     };
 
-    // Aquí normalmente iría una llamada a un servicio para obtener los datos del rastreo
+    // Actualizar informacionEnvio con los datos obtenidos
+    this.informacionEnvio = {
+      numeroRastreo: this.trackingDetails.trackingNumber,
+      fechaRegistro: this.trackingInfo.shippedDate,
+      fechaEntrega: this.trackingInfo.estimatedDelivery,
+      origen: 'LIMA',
+      destino: this.trackingInfo.currentLocation,
+      estado: 'en-ruta'
+    };
   }
 
-  // Función para configurar los botones del sidebar
   private setupToggleButtons(): void {
     const sidebar = this.elRef.nativeElement.querySelector('.sidebar');
     const toggleButtons = sidebar.querySelectorAll('.toggle-submenu');

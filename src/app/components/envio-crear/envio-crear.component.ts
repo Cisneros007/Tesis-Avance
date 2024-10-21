@@ -1,83 +1,80 @@
-import { Component, ElementRef, Renderer2, AfterViewInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router'; // Importa Router
 
 @Component({
   selector: 'app-envio-crear',
   templateUrl: './envio-crear.component.html',
   styleUrls: ['./envio-crear.component.css']
 })
-export class EnvioCrearComponent implements AfterViewInit {
-  nuevoEnvio = {
-    nombreEnvio: '',
-    fechaEnvio: '',
-    horaEnvio: '',
-    estado: 'Pendiente'
-  };
+export class EnvioCrearComponent {
+  encomiendaForm: FormGroup;
+  currentStep = 1;
+  stepsCompleted = [false, false, false, false];
 
-  constructor(private elRef: ElementRef, private renderer: Renderer2, private router: Router) {}
+  constructor(private fb: FormBuilder, private router: Router) { // Inyecta Router
+    this.encomiendaForm = this.fb.group({
+      remitenteNombre: ['', Validators.required],
+      remitenteTelefono: ['', Validators.required],
+      remitenteDireccion: ['', Validators.required],
+      destinatarioNombre: ['', Validators.required],
+      destinatarioTelefono: ['', Validators.required],
+      destinatarioDireccion: ['', Validators.required],
+      paqueteDescripcion: ['', Validators.required],
+      paquetePeso: ['', Validators.required],
+      manipulacionEspecial: [false]
+    });
+  }
 
-  // Método para crear el envío
-  crearEnvio() {
-    if (this.nuevoEnvio.nombreEnvio && this.nuevoEnvio.fechaEnvio && this.nuevoEnvio.horaEnvio && this.nuevoEnvio.estado) {
-      console.log('Nuevo Envío Creado:', this.nuevoEnvio);
-
-      // Aquí puedes agregar la lógica para enviar el objeto a un servicio o API
-      // Por ejemplo:
-      // this.envioService.crearEnvio(this.nuevoEnvio).subscribe(response => {
-      //   console.log('Envío creado exitosamente', response);
-      // });
-    } else {
-      console.error('Por favor completa todos los campos');
+  nextStep() {
+    if (this.currentStep < 4 && this.isStepValid()) {
+      this.stepsCompleted[this.currentStep - 1] = true;
+      this.currentStep++;
     }
   }
 
-  // Ejecutado después de que la vista ha sido inicializada
-  ngAfterViewInit(): void {
-    this.setupToggleButtons();
+  prevStep() {
+    if (this.currentStep > 1) {
+      this.currentStep--;
+    }
   }
 
-  // Navegación a la vista de detalles de la tarifa
-  viewDetails(tarifa: any) {
-    this.router.navigate(['/tarifa-detalle', tarifa.id]);
+  isStepValid(): boolean {
+    const controls = this.encomiendaForm.controls;
+    switch (this.currentStep) {
+      case 1:
+        return controls['remitenteNombre'].valid &&
+               controls['remitenteTelefono'].valid &&
+               controls['remitenteDireccion'].valid;
+      case 2:
+        return controls['destinatarioNombre'].valid &&
+               controls['destinatarioTelefono'].valid &&
+               controls['destinatarioDireccion'].valid;
+      case 3:
+        return controls['paqueteDescripcion'].valid &&
+               controls['paquetePeso'].valid;
+      default:
+        return true;
+    }
   }
 
-  // Configuración de botones de alternancia para los submenús
-  private setupToggleButtons(): void {
-    const sidebar = this.elRef.nativeElement.querySelector('.sidebar');
-    const toggleButtons = sidebar.querySelectorAll('.toggle-submenu');
+  getStepClass(step: number): string {
+    if (this.stepsCompleted[step - 1]) {
+      return 'completed';
+    } else if (step === this.currentStep) {
+      return 'active';
+    }
+    return '';
+  }
 
-    // Función para cerrar todos los submenús
-    const closeAllSubmenus = () => {
-      sidebar.querySelectorAll('.submenu').forEach((submenu: HTMLElement) => {
-        this.renderer.setStyle(submenu, 'display', 'none');
-      });
-      toggleButtons.forEach((button: HTMLElement) => {
-        this.renderer.removeClass(button, 'active');
-      });
-    };
+  onSubmit() {
+    if (this.encomiendaForm.valid) {
+      console.log(this.encomiendaForm.value);
+      // Aquí puedes manejar el envío de los datos o realizar cualquier otra acción.
+    }
+  }
 
-    // Agrega el evento de clic a los botones de alternancia
-    toggleButtons.forEach((button: HTMLElement) => {
-      this.renderer.listen(button, 'click', (e: Event) => {
-        e.preventDefault();
-        const submenu = button.nextElementSibling as HTMLElement;
-
-        if (submenu.style.display === 'block') {
-          this.renderer.setStyle(submenu, 'display', 'none');
-          this.renderer.removeClass(button, 'active');
-        } else {
-          closeAllSubmenus();
-          this.renderer.setStyle(submenu, 'display', 'block');
-          this.renderer.addClass(button, 'active');
-        }
-      });
-    });
-
-    // Cierra todos los submenús cuando se hace clic fuera de la barra lateral
-    this.renderer.listen('document', 'click', (e: Event) => {
-      if (!sidebar.contains(e.target as Node)) {
-        closeAllSubmenus();
-      }
-    });
+  goToDashboard() {
+    this.router.navigate(['/dashboard']); // Navega al dashboard
   }
 }
